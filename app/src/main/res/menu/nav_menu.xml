@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+<item
+
+    android:id="@+id/hoe"
+    android:icon="@drawable/ic_baseline_home_24"
+    android:title="Home"/>
+    <item
+        android:id="@+id/danhmuc"
+        android:icon="@drawable/ic_baseline_menu_24"
+        android:title="Danh mục sản phẩm"/>
+    <item
+        android:id="@+id/dangtin"
+        android:icon="@drawable/ic_baseline_monochrome_photos_24"
+        android:title="Đăng tin"/>
+    <item
+        android:id="@+id/Thongtin"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="Thông tin cá nhân"/>
+</menu>

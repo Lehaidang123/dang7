@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/wallpaper1"
+    tools:context=".MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+
+
+        >
+
+        <EditText
+            android:id="@+id/tk"
+            android:layout_marginTop="300dp"
+            android:layout_width="330dp"
+
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:textColor="@color/black"
+
+
+            android:background="@drawable/rectanglepass"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+        android:layout_marginRight="5dp"
+            android:textColorHint="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+
+
+            />
+        <EditText
+            android:id="@+id/mk"
+            android:layout_marginTop="10dp"
+            android:layout_width="330dp"
+
+            android:layout_height="wrap_content"
+            android:hint="PassWord"
+            android:textColor="@color/black"
+            android:inputType="textPassword"
+
+            android:background="@drawable/rectanglepass"
+            android:ems="10"
+
+            android:padding="10dp"
+            android:layout_marginRight="5dp"
+            android:textColorHint="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="Quên mật khẩu?"
+            android:id="@+id/quenmk"
+            android:layout_gravity="right"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="40dp"
+            />
+
+        <Button
+            android:onClick="dangnhapn"
+            android:layout_marginTop="30dp"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:text="Đăng nhập"
+            android:id="@+id/dangnhap"
+
+            />
+        <Button
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:text="Đăng ký"
+            android:id="@+id/dangky"
+
+            />
+
+
+        <TextView
+            android:id="@+id/tv_createText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Đã có tài khoản? Đăng nhập ở đâu"
+            android:textColor="#776E26"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_register" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_createText"
+            app:layout_constraintVertical_bias="0.26" />
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

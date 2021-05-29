@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "236648008796",
+    "project_id": "thanh-l-c",
+    "storage_bucket": "thanh-l-c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236648008796:android:a85fe14264d189756aaa99",
+        "android_client_info": {
+          "package_name": "com.example.thanhlc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "236648008796-j5fc2ds3dabumu20dc0upa5ltbsb6jka.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZHUNg59oC_fpUzaaJDqytGY16P_9yXY0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "236648008796-j5fc2ds3dabumu20dc0upa5ltbsb6jka.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
