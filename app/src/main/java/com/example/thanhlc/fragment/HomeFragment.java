@@ -255,8 +255,8 @@ autoSlideImages();
         List<photo> list = new ArrayList<>();
         list.add(new photo(R.drawable.img1));
         list.add(new photo(R.drawable.img2));
-        list.add(new photo(R.drawable.img3));
-        list.add(new photo(R.drawable.img4));
+        list.add(new photo(R.drawable.allracing));
+        list.add(new photo(R.drawable.huoc));
 
         return list;
 

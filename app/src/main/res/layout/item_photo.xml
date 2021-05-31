@@ -8,4 +8,13 @@
         android:layout_height="220dp"
         android:src="@drawable/wallpaper1"
         android:scaleType="centerCrop"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/link"
+
+        android:textColor="@color/aqua"
+        android:textSize="8pt"
+        android:text="Trải nghiệm ngay"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

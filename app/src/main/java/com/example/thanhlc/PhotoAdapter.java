@@ -1,9 +1,11 @@
 package com.example.thanhlc;
 
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
@@ -38,7 +40,14 @@ public class PhotoAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         View view = LayoutInflater.from(container.getContext()).inflate(R.layout.item_photo, container, false);
         ImageView imgPhoto = view.findViewById(R.id.img_photo);
-
+        TextView textView = view.findViewById(R.id.link);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textView .setText("https://www.facebook.com/All-RacingShop-106377424321048");
+                Linkify.addLinks(textView , Linkify.WEB_URLS);
+            }
+        });
         photo photo = mListPhoto.get(position);
 
         if(photo != null){

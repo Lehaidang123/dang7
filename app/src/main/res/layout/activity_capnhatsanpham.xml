@@ -7,6 +7,26 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:id="@+id/li"
+
+        android:layout_height="wrap_content"
+        android:background="@color/aqua">
+        <TextView
+            android:id="@+id/txtSearch"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="6dp"
+            android:drawableLeft="@drawable/muiten"
+            android:drawablePadding="75dp"
+            android:layout_margin="10dp"
+            android:text="Cập nhật sản phẩm "
+
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
         android:padding="30dp"
         android:orientation="vertical"
         android:layout_height="wrap_content">
@@ -14,6 +34,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_marginTop="35dp"
             android:scaleType="centerCrop"
             android:id="@+id/capnhathinh"
             android:src="@drawable/idex"
@@ -53,6 +74,7 @@
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:id="@+id/spinnercapnhatdanhmuc"
 
             />
