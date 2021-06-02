@@ -1,36 +1,32 @@
 package com.example.thanhlc;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
-import org.jetbrains.annotations.NotNull;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class acticchat extends AppCompatActivity {
 EditText chat;
-ImageView button;
+
+    FloatingActionButton button;
     private static final int REQUEST_CALL = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acticchat);
         chat = findViewById(R.id.cha);
-      button = findViewById(R.id.call);
+     button = findViewById(R.id.fab);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

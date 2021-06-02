@@ -40,10 +40,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import me.relex.circleindicator.CircleIndicator;
 
@@ -197,6 +198,7 @@ public class HomeFragment extends Fragment {
                         intent.putExtra("hinh",listHinhAnh.get(position).getLink());
                         intent.putExtra("sdt",listHinhAnh.get(position).getSdt());
                         intent.putExtra("tinhtrang",listHinhAnh.get(position).getTinhtrang());
+                        intent.putExtra("khuvuc",listHinhAnh.get(position).getKhuvuc());
 
 
                         startActivity(intent);
@@ -231,16 +233,20 @@ autoSlideImages();
                     String noidung = ds.child("noidung").getValue(String.class);
                     String tinh=ds.child("tinhtrang").getValue(String.class);
                     String sdt= ds.child("sdt").getValue(String.class);
-                    AtomicBoolean isSP = new AtomicBoolean();
-                    listHinhAnh.forEach(sanpham -> {
-                        if (sanpham.getId() == key) {
-                            isSP.set(true);
+                    String khu = ds.child("khuvuc").getValue(String.class);
+
+
+
+                        Hinhanh ha = new Hinhanh(khu,tinh,"",key,ten,gia,noidung,hinh, sdt);
+                        listHinhAnh.add(ha);
+                    Collections.sort(listHinhAnh, new Comparator<Hinhanh>() {
+                        @Override
+                        public int compare(Hinhanh o1, Hinhanh o2) {
+
+                            return (o1.getTenhinh().compareTo(o2.getTenhinh()));
+
                         }
                     });
-
-
-                        Hinhanh ha = new Hinhanh(tinh,"",key,ten,gia,noidung,hinh, sdt);
-                        listHinhAnh.add(ha);
                 }
                 adapter.notifyDataSetChanged();
             }

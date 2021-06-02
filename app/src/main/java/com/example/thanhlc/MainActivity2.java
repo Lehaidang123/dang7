@@ -1,8 +1,5 @@
 package com.example.thanhlc;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -11,6 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -60,26 +60,34 @@ ImageView imageView;
                 userr.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                        if(snapshot.exists() )
-                        {
+
+
+                            String tendn = snapshot.child("usernamae").getValue(String.class);
+
+                            if (snapshot.exists()) {
 
                                 Toast.makeText(MainActivity2.this, "Số điện thoại đã được sử dụng", Toast.LENGTH_SHORT).show();
 
 
-                        }
-                        else {
-                            if (user.getText().toString().length() != 0 && pass.getText().toString().length() != 0 && sdt.getText().toString().length() != 0 && ten.getText().toString().length() != 0) {
-                                Helperclass helperclass = new Helperclass(name, p, st, hoten);
-                                Toast.makeText(MainActivity2.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                                reference.child(name).setValue(helperclass);
-                                Intent intent = new Intent(MainActivity2.this, MainActivity8.class);
-                                startActivity(intent);
-                            } else {
-                                Toast.makeText(MainActivity2.this, "Vui lòng điền đầy đủ", Toast.LENGTH_SHORT).show();
-                            }
-                        }
 
-                    }
+                            }
+                            else {
+
+                                if (user.getText().toString().length() != 0 && pass.getText().toString().length() != 0 && sdt.getText().toString().length() != 0 && ten.getText().toString().length() != 0) {
+                                    Helperclass helperclass = new Helperclass(name, p, st, hoten);
+                                    Toast.makeText(MainActivity2.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                                    reference.child(name).setValue(helperclass);
+                                    Intent intent = new Intent(MainActivity2.this, MainActivity8.class);
+                                    startActivity(intent);
+                                }else {
+                                    Toast.makeText(MainActivity2.this, "Vui lòng điền đầy đủ", Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+
+
+                        }
+                        //Toast.makeText(MainActivity2.this, "Vui lòng điền đầy đủ", Toast.LENGTH_SHORT).show();
 
                     @Override
                     public void onCancelled(@NonNull @NotNull DatabaseError error) {

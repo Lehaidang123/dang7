@@ -81,8 +81,15 @@
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+
             android:id="@+id/capnhatspinnertinhtrang"
+
+            />
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:id="@+id/cnkhhuvuc"
 
             />
 
@@ -95,7 +102,7 @@
             android:layout_height="60dp"
             android:text="Cập nhật "
 
-            android:layout_marginTop="30dp"
+
             android:textSize="22sp"
             android:backgroundTint="@color/black"
             android:textColor="#ffffff"

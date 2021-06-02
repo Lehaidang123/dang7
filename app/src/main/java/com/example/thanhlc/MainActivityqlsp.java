@@ -1,15 +1,15 @@
 package com.example.thanhlc;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -72,7 +72,7 @@ public class MainActivityqlsp extends AppCompatActivity {
 
                     AtomicBoolean isSP = new AtomicBoolean();
                         if(MainActivity.sdt.equals(sdt)) {
-                            Hinhanh ha = new Hinhanh("","", key, ten, gia, noidung, hinh,MainActivity.sdt);
+                            Hinhanh ha = new Hinhanh("","","", key, ten, gia, noidung, hinh,MainActivity.sdt);
                             listHinhAnh.add(ha);
                         }
                 }

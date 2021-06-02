@@ -1,15 +1,15 @@
 package com.example.thanhlc;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -43,7 +43,7 @@ public class MainActivitysapxep extends AppCompatActivity {
                 intent.putExtra("hinh",listHinhAnh.get(position).getLink());
                 intent.putExtra("sdt",listHinhAnh.get(position).getSdt());
                 intent.putExtra("tinhtrang",listHinhAnh.get(position).getTinhtrang());
-
+                intent.putExtra("khuvuc",listHinhAnh.get(position).getKhuvuc());
 
 
                 startActivity(intent);
@@ -74,6 +74,7 @@ public class MainActivitysapxep extends AppCompatActivity {
                     String noidung = ds.child("noidung").getValue(String.class);
                     String sdt = ds.child("sdt").getValue(String.class);
                     String tinhtrang = ds.child("tinhtrang").getValue(String.class);
+                    String khu =ds.child("khuvuc").getValue(String.class);
                     AtomicBoolean isSP = new AtomicBoolean();
                     listHinhAnh.forEach(sanpham -> {
                         if (sanpham.getId() == key) {
@@ -83,7 +84,7 @@ public class MainActivitysapxep extends AppCompatActivity {
                     });
 
 
-                    Hinhanh ha = new Hinhanh(tinhtrang,"",key,ten,gia,noidung,hinh,sdt);
+                    Hinhanh ha = new Hinhanh(khu,tinhtrang,"",key,ten,gia,noidung,hinh,sdt);
                     listHinhAnh.add(ha);
                     Collections.sort(listHinhAnh, new Comparator<Hinhanh>() {
                         @Override
@@ -98,7 +99,7 @@ public class MainActivitysapxep extends AppCompatActivity {
                                 }
                             }
                         }
-                       //   return (o1.getTenhinh().compareTo(o2.getTenhinh()));
+                        //   return (o1.getTenhinh().compareTo(o2.getTenhinh()));
 
 
                     });

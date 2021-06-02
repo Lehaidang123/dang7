@@ -1,15 +1,15 @@
 package com.example.thanhlc;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,7 +20,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MainActivitysapxeptheochu extends AppCompatActivity {
     GridView gridView;
@@ -43,6 +42,7 @@ public class MainActivitysapxeptheochu extends AppCompatActivity {
                 intent.putExtra("hinh",listHinhAnh.get(position).getLink());
                 intent.putExtra("sdt",listHinhAnh.get(position).getSdt());
                 intent.putExtra("tinhtrang",listHinhAnh.get(position).getTinhtrang());
+                intent.putExtra("khuvuc",listHinhAnh.get(position).getKhuvuc());
 
 
 
@@ -70,16 +70,11 @@ public class MainActivitysapxeptheochu extends AppCompatActivity {
                     String noidung = ds.child("noidung").getValue(String.class);
                     String sdt = ds.child("sdt").getValue(String.class);
                     String tinhtrang = ds.child("tinhtrang").getValue(String.class);
-                    AtomicBoolean isSP = new AtomicBoolean();
-                    listHinhAnh.forEach(sanpham -> {
-                        if (sanpham.getId() == key) {
-                            isSP.set(true);
-
-                        }
-                    });
+                    String khu= ds.child("khuvuc").getValue(String.class);
 
 
-                    Hinhanh ha = new Hinhanh(tinhtrang,"",key,ten,gia,noidung,hinh,sdt);
+
+                    Hinhanh ha = new Hinhanh(khu,tinhtrang,"",key,ten,gia,noidung,hinh,sdt);
                     listHinhAnh.add(ha);
                     Collections.sort(listHinhAnh, new Comparator<Hinhanh>() {
                         @Override

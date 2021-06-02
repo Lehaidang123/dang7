@@ -5,7 +5,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,17 +22,21 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import com.example.thanhlc.Danhmuc;
 import com.example.thanhlc.Hinhanh;
 import com.example.thanhlc.MainActivity;
 import com.example.thanhlc.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -59,7 +65,9 @@ public class dangFragment extends Fragment {
     EditText noidung;
     EditText danhmuc;
     TextView testsipn;
-    Spinner spinner,spinnertinhtrang;
+    com.example.thanhlc.adapterdanhmuc adapterdanhmuc;
+    ArrayList<Danhmuc> danhmucs;
+    Spinner spinner,spinnertinhtrang,khuvuc;
     private static final int SELECT_PICTURE = 1;
     FirebaseStorage storage = FirebaseStorage.getInstance();
     DatabaseReference Mdata;
@@ -123,7 +131,13 @@ public class dangFragment extends Fragment {
         ten = (EditText) view.findViewById(R.id.tensp);
         gia = (EditText) view.findViewById(R.id.gia);
         noidung = (EditText) view.findViewById(R.id.mota);
+        khuvuc = (Spinner)view.findViewById(R.id.khhuvuc);
         spinnertinhtrang=(Spinner)view.findViewById(R.id.spinnertinhtrang);
+        String y[] ={"TP,HCM","Vĩnh Long","CÀ Mau","Bến tre","Tiền Giang","" +
+                "sóc Trăng","Bạc Liêu","An Giang","Kiên Giang","Cần Thơ"};
+        ArrayAdapter adapt=new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item,y);
+        adapt.setDropDownViewResource(android.R.layout.simple_list_item_multiple_choice);
+        khuvuc.setAdapter(adapt);
 
         String t[] ={"Mới 100%","Đã khui","Đã qua sử dụng","Đã tân Trang"};
         ArrayAdapter adapte=new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item,t);
@@ -133,9 +147,12 @@ public class dangFragment extends Fragment {
         //select =(Button) view.findViewById(R.id.selectig);
         spinner =(Spinner)view.findViewById(R.id.spinner);
         String m[] = {"Nội -Ngoại Thất","Đồ Điện Tử","Xe Cộ","Thời Trang","Mẹ và bé","Giải Trí-Thể Thao","Đồ Văn Phòng","Dịch Vụ"};
-        ArrayAdapter adapter=new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item,m);
+       ArrayAdapter adapter=new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item,m);
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_multiple_choice);
-        spinner.setAdapter(adapter);
+
+       spinner.setAdapter(adapter);
+
+
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,7 +204,7 @@ public class dangFragment extends Fragment {
                                 //Log.d("AAAA",down+"");
 
                                 String key = Mdata.push().getKey();
-                                Hinhanh hinhanh = new Hinhanh(spinnertinhtrang.getSelectedItem().toString(),spinner.getSelectedItem().toString(),key,ten.getText().toString(), gia.getText().toString(), noidung.getText().toString(), String.valueOf(downloadUri), MainActivity.sdt);
+                                Hinhanh hinhanh = new Hinhanh(khuvuc.getSelectedItem().toString(),spinnertinhtrang.getSelectedItem().toString(),spinner.getSelectedItem().toString(),key,ten.getText().toString(), gia.getText().toString(), noidung.getText().toString(), String.valueOf(downloadUri), MainActivity.sdt);
 
                                 //tạo node trên database
 
@@ -229,7 +246,29 @@ public class dangFragment extends Fragment {
 
 
     }
+    private void DatafromFireba(){
+        danhmucs = new ArrayList<>();
+        Mdata= FirebaseDatabase.getInstance().getReference().child("danhmuc");
+        Mdata.addValueEventListener(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot ds : snapshot.getChildren()){
+                    Log.d("abc", "onDataChange: vao day");
+                    String ten = ds.child("tendm").getValue(String.class);
+                  //  String hinh = ds.child("hinh").getValue(String.class);
+                    Danhmuc ha = new Danhmuc(ten,"");
+                    danhmucs.add(ha);
+                }
+                adapterdanhmuc.notifyDataSetChanged();
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
   /* public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == SELECT_PICTURE && resultCode == RESULT_OK && data != null) {

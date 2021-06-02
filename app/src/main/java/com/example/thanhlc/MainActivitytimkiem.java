@@ -1,18 +1,16 @@
 package com.example.thanhlc;
 
+import android.os.Build;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Build;
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,8 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MainActivitytimkiem extends AppCompatActivity {
         RecyclerView recyclerView;
@@ -73,7 +69,8 @@ public class MainActivitytimkiem extends AppCompatActivity {
                     String noidung = ds.child("noidung").getValue(String.class);
                     String sdt = ds.child("sdt").getValue(String.class);
                     String tinhtrang = ds.child("tinhtrang").getValue(String.class);
-                    Hinhanh ha = new Hinhanh(tinhtrang,tendm,key,ten,gia,noidung,hinh,sdt);
+                    String khu = ds .child("khuvuc").getValue(String.class);
+                    Hinhanh ha = new Hinhanh(khu,tinhtrang,tendm,key,ten,gia,noidung,hinh,sdt);
                     listHinhAnh.add(ha);
                 }
                 recyclerView= findViewById(R.id.listimkiem);

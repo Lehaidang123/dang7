@@ -9,12 +9,26 @@
 
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/li"
 
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="40dp"
-       android:background="@color/aqua"
-       />
+        android:layout_height="wrap_content"
+        android:background="@color/aqua">
+        <TextView
+            android:id="@+id/txtSearch"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/muiten"
+            android:drawablePadding="55dp"
+            android:layout_margin="10dp"
+            android:text="Danh mục sản phẩm "
+
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+    </LinearLayout>
 
 
     <GridView
@@ -29,3 +43,4 @@
         android:verticalSpacing="10dp" />
 
 </LinearLayout>
+    

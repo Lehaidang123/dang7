@@ -1,7 +1,7 @@
 <resources>
 
     <style name="Widget.Theme.ThanhLýĐồCũ.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
-        <item name="android:background">@color/black_overlay</item>
+        <item name="android:background">@color/aqua</item>
     </style>
 
     <style name="Widget.Theme.ThanhLýĐồCũ.ButtonBar.Fullscreen" parent="">

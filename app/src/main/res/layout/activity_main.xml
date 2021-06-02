@@ -78,13 +78,16 @@
             android:onClick="dangnhapn"
             android:layout_marginTop="30dp"
             android:layout_width="330dp"
+
             android:layout_height="wrap_content"
             android:text="Đăng nhập"
+
             android:id="@+id/dangnhap"
 
             />
         <Button
             android:layout_width="330dp"
+
             android:layout_height="wrap_content"
             android:text="Đăng ký"
             android:id="@+id/dangky"

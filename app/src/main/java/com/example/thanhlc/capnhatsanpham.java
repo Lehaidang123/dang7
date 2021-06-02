@@ -1,10 +1,5 @@
 package com.example.thanhlc;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -20,6 +15,11 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -46,7 +46,7 @@ public class capnhatsanpham extends AppCompatActivity {
     EditText ten, gia, noidung;
     ImageView imageView;
     TextView idd;
-    Spinner danhmuc, tinhtrang;
+    Spinner danhmuc, tinhtrang,khuvuc;
     Button capnhat, xoa;
     DatabaseReference Mdata;
     public static String tenhinh;
@@ -74,6 +74,7 @@ public class capnhatsanpham extends AppCompatActivity {
         tinhtrang = findViewById(R.id.capnhatspinnertinhtrang);
         capnhat = findViewById(R.id.btncapnhatsp);
         idd = findViewById(R.id.id);
+        khuvuc=findViewById(R.id.cnkhhuvuc);
         xoa = findViewById(R.id.btnxoa);
         StorageReference storageRef = storage.getReferenceFromUrl("gs://thanh-l-c.appspot.com");
 
@@ -119,7 +120,7 @@ public class capnhatsanpham extends AppCompatActivity {
 
                                             tenhinh = snapshot.child(tai).child("id").getValue(String.class);
                                             Mdata = FirebaseDatabase.getInstance().getReference().child("sanpham");
-                                            Hinhanh hinhanh = new Hinhanh(tinhtrang.getSelectedItem().toString(), danhmuc.getSelectedItem().toString(), tenhinh, ten.getText().toString(), gia.getText().toString(), noidung.getText().toString(), String.valueOf(downloadUri), MainActivity.sdt);
+                                            Hinhanh hinhanh = new Hinhanh(khuvuc.getSelectedItem().toString(),tinhtrang.getSelectedItem().toString(), danhmuc.getSelectedItem().toString(), tenhinh, ten.getText().toString(), gia.getText().toString(), noidung.getText().toString(), String.valueOf(downloadUri), MainActivity.sdt);
                                             Mdata.child(tai).setValue(hinhanh, new DatabaseReference.CompletionListener() {
                                                 @Override
                                                 public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
@@ -162,7 +163,11 @@ public class capnhatsanpham extends AppCompatActivity {
                 }
             }
         });
-
+        String y[] ={"TP,HCM","Vĩnh Long","CÀ Mau","Bến tre","Tiền Giang","" +
+                "sóc Trăng","Bác Liêu","An Giang","Kiên Giang","Cần Thơ"};
+        ArrayAdapter adapt=new ArrayAdapter(capnhatsanpham.this, android.R.layout.simple_spinner_item,y);
+        adapt.setDropDownViewResource(android.R.layout.simple_list_item_multiple_choice);
+        khuvuc.setAdapter(adapt);
 
         String t[] = {"Mới 100%", "Đã khui", "Đã qua sử dụng", "Đã tân Trang"};
         ArrayAdapter adapte = new ArrayAdapter(capnhatsanpham.this, android.R.layout.simple_spinner_item, t);

@@ -1,30 +1,22 @@
 package com.example.thanhlc;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class MainActivitychitiet extends AppCompatActivity {
         ImageView imageView;
-        TextView ten,gia,noidung,sdt,tinhtrang;
+        TextView ten,gia,noidung,sdt,tinhtrang,khuvuc;
         sanphamAdapter adapter;
         DatabaseReference Mdata;
         String tens;
@@ -41,6 +33,7 @@ public class MainActivitychitiet extends AppCompatActivity {
         mail=findViewById(R.id.fab);
         tinhtrang=findViewById(R.id.chitiettinhtrang);
         noidung=findViewById(R.id.chitietnoidung);
+        khuvuc = findViewById(R.id.chitietkhuvuc);
         loadData();
         mail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,12 +49,12 @@ public class MainActivitychitiet extends AppCompatActivity {
 
     private void loadData(){
         Intent intent = getIntent();
-        ten.setText(intent.getStringExtra("ten"));
-        gia.setText(intent.getStringExtra("gia"));
+        ten.setText("Tên SP:"+" "+intent.getStringExtra("ten"));
+        gia.setText(intent.getStringExtra(("gia"))+" "+"VNĐ");
          noidung.setText(intent.getStringExtra("noidung"));
-        tinhtrang.setText(intent.getStringExtra("tinhtrang"));
-            sdt.setText(intent.getStringExtra("sdt"));
-
+        tinhtrang.setText("Tình Trang:"+" "+intent.getStringExtra("tinhtrang"));
+            sdt.setText("SĐT:"+" "+intent.getStringExtra("sdt"));
+        khuvuc.setText("Khu Vực:"+" "+intent.getStringExtra("khuvuc"));
          String url = intent.getStringExtra("hinh");
         Picasso.with(this).load(url).into(imageView);
     }

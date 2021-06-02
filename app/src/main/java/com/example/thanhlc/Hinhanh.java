@@ -1,7 +1,5 @@
 package com.example.thanhlc;
 
-import java.util.Date;
-
 public class Hinhanh {
     String Tenhinh;
     String gia;
@@ -9,7 +7,7 @@ public class Hinhanh {
     String Link;
 String tendm;
 String tinhtrang;
-String sdt;
+String sdt,khuvuc;
 
 
 
@@ -26,7 +24,8 @@ public Hinhanh(){
 
 }
 
-    public Hinhanh(String tinhtrang,String tendm,String id,String tenhinh, String gia, String noidung, String link,String sdt) {
+    public Hinhanh(String khuvuc,String tinhtrang,String tendm,String id,String tenhinh, String gia, String noidung, String link,String sdt) {
+        this.khuvuc = khuvuc;
     this.tinhtrang=tinhtrang;
     this.tendm=tendm;
         this.id = id;
@@ -37,6 +36,15 @@ public Hinhanh(){
         this.sdt = sdt;
 
     }
+
+    public String getKhuvuc() {
+        return khuvuc;
+    }
+
+    public void setKhuvuc(String khuvuc) {
+        this.khuvuc = khuvuc;
+    }
+
     public String getTinhtrang() {
         return tinhtrang;
     }

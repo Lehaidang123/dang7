@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class adapterdanhmuc extends BaseAdapter {
     Context context;
@@ -47,8 +46,8 @@ public class adapterdanhmuc extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView = inflater.inflate(layout,null);
-        TextView   textView= convertView.findViewById(R.id.testdanhmuc);
-        textView.setText(arraylist.get(position).Ten);
+        TextView textView= convertView.findViewById(R.id.testdanhmuc);
+      textView.setText(arraylist.get(position).Ten);
         ImageView imageView = convertView.findViewById(R.id.ddanhmuc);
         String url = arraylist.get(position).getHinh();
         Picasso.with(context).load(url).into(imageView);

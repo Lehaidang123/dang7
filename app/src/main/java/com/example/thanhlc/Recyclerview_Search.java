@@ -55,6 +55,7 @@ public class Recyclerview_Search extends RecyclerView.Adapter<Recyclerview_Searc
                 intent.putExtra("noidung",filterList.get(position).getNoidung());
                 intent.putExtra("sdt",filterList.get(position).getSdt());
                 intent.putExtra("tinhtrang",filterList.get(position).getTinhtrang());
+                intent.putExtra("khuvuc",filterList.get(position).getKhuvuc());
 
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mcontext.startActivity(intent);

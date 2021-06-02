@@ -1,31 +1,27 @@
 package com.example.thanhlc;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class    MainActivityxeco extends AppCompatActivity {
 GridView gridView;
@@ -55,6 +51,7 @@ GridView gridView;
                 intent.putExtra("hinh",listHinhAnh.get(position).getLink());
                 intent.putExtra("sdt",listHinhAnh.get(position).getSdt());
                 intent.putExtra("tinhtrang",listHinhAnh.get(position).getTinhtrang());
+                intent.putExtra("khuvuc",listHinhAnh.get(position).getKhuvuc());
                 startActivity(intent);
             }
         });
@@ -79,9 +76,27 @@ GridView gridView;
                         String noidung = ds.child("noidung").getValue(String.class);
                         String sdt = ds.child("sdt").getValue(String.class);
                         String tinhtrang = ds.child("tinhtrang").getValue(String.class);
+                        String khu = ds.child("khuvuc").getValue(String.class);
                         if(d.equals(tendm)) {
-                            Hinhanh ha = new Hinhanh(tinhtrang,d, "", ten, gia, noidung, hinh,sdt);
+                            Hinhanh ha = new Hinhanh(khu,tinhtrang,d, "", ten, gia, noidung, hinh,sdt);
                             listHinhAnh.add(ha);
+                            Collections.sort(listHinhAnh, new Comparator<Hinhanh>() {
+                                @Override
+                                public int compare(Hinhanh o1, Hinhanh o2) {
+                                    if (Integer.parseInt(o1.getGia()) > Integer.parseInt(o2.getGia()))
+                                        return 1;
+                                    else {
+                                        if (o1.getGia() == o2.getGia()) {
+                                            return 0;
+                                        } else {
+                                            return -1;
+                                        }
+                                    }
+                                }
+                                //   return (o1.getTenhinh().compareTo(o2.getTenhinh()));
+
+
+                            });
                         }
 
                 }
@@ -98,4 +113,5 @@ GridView gridView;
         Intent intent = getIntent();
         tendm = intent.getStringExtra("tendm");
     }
+
 }
