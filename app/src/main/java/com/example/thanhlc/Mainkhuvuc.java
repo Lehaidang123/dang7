@@ -24,30 +24,30 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class    MainActivityxeco extends AppCompatActivity {
-GridView gridView;
+public class Mainkhuvuc extends AppCompatActivity {
+GridView khuvuc;
+String khuc;
     DatabaseReference Mdata;
     Button sapxesp;
     EditText text;
-    TextView testdanhmuc;
+    TextView tetskhuvuc;
     ArrayList<Hinhanh> listHinhAnh = new ArrayList<>();
     sanphamAdapter adapter;
-    String tendm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_activityxeco);
-        gridView = findViewById(R.id.grxeco);
-        testdanhmuc = findViewById(R.id.txtdanhmuc);
-
-        loadData();
+        setContentView(R.layout.activity_mainkhuvuc);
+        khuvuc = findViewById(R.id.gkhuvuc);
+        tetskhuvuc = findViewById(R.id.txtkhuvuc);
+      load();
         DatafromFirebase();
         adapter = new sanphamAdapter(this,listHinhAnh);
-        gridView.setAdapter(adapter);
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        khuvuc.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        khuvuc.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainActivityxeco.this, MainActivitychitiet.class);
+                Intent intent = new Intent(Mainkhuvuc.this, MainActivitychitiet.class);
                 intent.putExtra("ten",listHinhAnh.get(position).getTenhinh());
                 intent.putExtra("gia",listHinhAnh.get(position).getGia());
                 intent.putExtra("noidung",listHinhAnh.get(position).getNoidung());
@@ -58,7 +58,12 @@ GridView gridView;
                 startActivity(intent);
             }
         });
-        adapter.notifyDataSetChanged();
+    }
+    public void load()
+    {
+        Intent intent = getIntent();
+        khuc = intent.getStringExtra("khuvuc");
+        tetskhuvuc.setText("Khu Vực"+"  "+khuc);
 
     }
     private void DatafromFirebase(){
@@ -71,36 +76,36 @@ GridView gridView;
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     //  Log.d("abc", "onDataChange: vao day");
-                        String key = ds.getKey();
-                        String d=ds.child("tendm").getValue(String.class);
-                        String ten = ds.child("tenhinh").getValue(String.class);
-                        String gia = ds.child("gia").getValue(String.class);
-                        String hinh = ds.child("link").getValue(String.class);
-                        String noidung = ds.child("noidung").getValue(String.class);
-                        String sdt = ds.child("sdt").getValue(String.class);
-                        String tinhtrang = ds.child("tinhtrang").getValue(String.class);
-                        String khu = ds.child("khuvuc").getValue(String.class);
-                        if(d.equals(tendm)) {
-                            Hinhanh ha = new Hinhanh(khu,tinhtrang,d, "", ten, gia, noidung, hinh,sdt);
-                            listHinhAnh.add(ha);
-                            Collections.sort(listHinhAnh, new Comparator<Hinhanh>() {
-                                @Override
-                                public int compare(Hinhanh o1, Hinhanh o2) {
-                                    if (Integer.parseInt(o1.getGia()) > Integer.parseInt(o2.getGia()))
-                                        return 1;
-                                    else {
-                                        if (o1.getGia() == o2.getGia()) {
-                                            return 0;
-                                        } else {
-                                            return -1;
-                                        }
+                    String key = ds.getKey();
+                    String d=ds.child("tendm").getValue(String.class);
+                    String ten = ds.child("tenhinh").getValue(String.class);
+                    String gia = ds.child("gia").getValue(String.class);
+                    String hinh = ds.child("link").getValue(String.class);
+                    String noidung = ds.child("noidung").getValue(String.class);
+                    String sdt = ds.child("sdt").getValue(String.class);
+                    String tinhtrang = ds.child("tinhtrang").getValue(String.class);
+                    String khu = ds.child("khuvuc").getValue(String.class);
+                  if(khu.equals(khuc)) {
+                        Hinhanh ha = new Hinhanh(khu,tinhtrang,d, "", ten, gia, noidung, hinh,sdt);
+                        listHinhAnh.add(ha);
+                        Collections.sort(listHinhAnh, new Comparator<Hinhanh>() {
+                            @Override
+                            public int compare(Hinhanh o1, Hinhanh o2) {
+                                if (Integer.parseInt(o1.getGia()) > Integer.parseInt(o2.getGia()))
+                                    return 1;
+                                else {
+                                    if (o1.getGia() == o2.getGia()) {
+                                        return 0;
+                                    } else {
+                                        return -1;
                                     }
                                 }
-                                //   return (o1.getTenhinh().compareTo(o2.getTenhinh()));
+                            }
+                            //   return (o1.getTenhinh().compareTo(o2.getTenhinh()));
 
 
-                            });
-                        }
+                        });
+                    }
 
                 }
                 adapter.notifyDataSetChanged();
@@ -112,10 +117,4 @@ GridView gridView;
             }
         });
     }
-    private void loadData(){
-        Intent intent = getIntent();
-        tendm = intent.getStringExtra("tendm");
-        testdanhmuc.setText("Danh mục"+" "+tendm);
-    }
-
 }

@@ -28,6 +28,7 @@ import com.example.thanhlc.MainActivitysapxep;
 import com.example.thanhlc.MainActivitysapxepgiamtheogia;
 import com.example.thanhlc.MainActivitysapxeptheochu;
 import com.example.thanhlc.MainActivitytimkiem;
+import com.example.thanhlc.Mainkhuvuc;
 import com.example.thanhlc.PhotoAdapter;
 import com.example.thanhlc.R;
 import com.example.thanhlc.photo;
@@ -61,7 +62,8 @@ public class HomeFragment extends Fragment {
     RecyclerView.LayoutManager layoutManager;
     GridView lvhinhanh;
     ImageView te;
-    Spinner spinner;
+    Spinner spinner, khuvuc;
+    ArrayList<com.example.thanhlc.khuvuc> khuvucs = new ArrayList<>();
     ArrayList<Hinhanh> listHinhAnh = new ArrayList<>();
     private ViewPager viewPager;
    private CircleIndicator circleIndicator;
@@ -139,6 +141,51 @@ public class HomeFragment extends Fragment {
       });
         photoAdapter.registerDataSetObserver(circleIndicator.getDataSetObserver());
                 spinner =(Spinner)view.findViewById(R.id.spinhome);
+                khuvuc = (Spinner)view.findViewById(R.id.homekhuvuc);
+        String y[] ={"Khu Vực","TP,HCM","Vĩnh Long","CÀ Mau","Bến tre","Tiền Giang","" +
+                "Sóc Trăng","Bạc Liêu","An Giang","Kiên Giang","Cần Thơ"};
+        ArrayAdapter adapt=new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item,y);
+        adapt.setDropDownViewResource(android.R.layout.simple_list_item_multiple_choice);
+        khuvuc.setAdapter(adapt);
+                khuvuc.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            for(int i = 1; i <=position;i++) {
+                                        int t= i;
+                                        if(t==position) {
+
+                                            Intent intent = new Intent(getActivity(), Mainkhuvuc.class);
+                                            intent.putExtra("khuvuc", khuvuc.getSelectedItem().toString());
+                                            startActivity(intent);
+
+
+
+                                        }
+
+                            }
+
+
+
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+             /*   khuvuc.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                     if(position == 2)
+                     {
+                         Intent intent = new Intent(getActivity(), Mainkhuvuc.class);
+                         intent.putExtra("khuvuc",khuvucs.get(position).getKhuvuc());
+                         startActivity(intent);
+                     }
+
+                    }
+                });*/
+
         String m[] = {"Sắp Xếp Theo Giá","Sắp Xếp Tăng Theo Giá","Sắp Xếp Giảm Theo Giá","Sắp xép theo chữ cái"};
         ArrayAdapter adapte=new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item,m);
         adapte.setDropDownViewResource(android.R.layout.simple_list_item_multiple_choice);

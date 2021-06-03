@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:background="@color/aqua">
         <TextView
-            android:id="@+id/txtdanhmuc"
+            android:id="@+id/txtkhuvuc"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="5dp"
@@ -24,7 +24,7 @@
             android:drawableLeft="@drawable/muiten"
             android:drawablePadding="55dp"
             android:layout_margin="10dp"
-
+            android:text=" "
 
             android:textColor="@color/black"
             android:textSize="20sp"/>
@@ -32,7 +32,7 @@
 
 
     <GridView
-        android:id="@+id/grxeco"
+        android:id="@+id/gkhuvuc"
         android:layout_width="350dp"
         android:layout_height="match_parent"
         android:layout_below="@+id/tSearch"
@@ -43,4 +43,4 @@
         android:verticalSpacing="10dp" />
 
 </LinearLayout>
-    
+

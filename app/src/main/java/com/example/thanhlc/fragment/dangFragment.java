@@ -133,8 +133,8 @@ public class dangFragment extends Fragment {
         noidung = (EditText) view.findViewById(R.id.mota);
         khuvuc = (Spinner)view.findViewById(R.id.khhuvuc);
         spinnertinhtrang=(Spinner)view.findViewById(R.id.spinnertinhtrang);
-        String y[] ={"TP,HCM","Vĩnh Long","CÀ Mau","Bến tre","Tiền Giang","" +
-                "sóc Trăng","Bạc Liêu","An Giang","Kiên Giang","Cần Thơ"};
+        String y[] ={"TP,HCM","Vĩnh Long","CÀ Mau","Bến tre","Tiền Giang",
+                "Sóc Trăng","Bạc Liêu","An Giang","Kiên Giang","Cần Thơ"};
         ArrayAdapter adapt=new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item,y);
         adapt.setDropDownViewResource(android.R.layout.simple_list_item_multiple_choice);
         khuvuc.setAdapter(adapt);

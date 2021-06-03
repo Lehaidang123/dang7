@@ -53,7 +53,7 @@ public class MainActivitychitiet extends AppCompatActivity {
         gia.setText(intent.getStringExtra(("gia"))+" "+"VNĐ");
          noidung.setText(intent.getStringExtra("noidung"));
         tinhtrang.setText("Tình Trang:"+" "+intent.getStringExtra("tinhtrang"));
-            sdt.setText("SĐT:"+" "+intent.getStringExtra("sdt"));
+            sdt.setText(intent.getStringExtra("sdt"));
         khuvuc.setText("Khu Vực:"+" "+intent.getStringExtra("khuvuc"));
          String url = intent.getStringExtra("hinh");
         Picasso.with(this).load(url).into(imageView);

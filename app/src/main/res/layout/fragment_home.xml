@@ -37,7 +37,16 @@ android:layout_marginRight="50dp"
             android:layout_height="40dp"
             android:id="@+id/spinhome"
 
+
             />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/homekhuvuc"
+
+
+        />
+
 
 
         />

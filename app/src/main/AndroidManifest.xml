@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.thanhlc">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ThanhLýĐồCũ">
-        <activity android:name=".acticchat"></activity>
+        <activity android:name=".Mainkhuvuc"></activity>
+        <activity android:name=".acticchat" />
         <activity android:name=".capnhatsanpham" />
         <activity android:name=".doimatkhau" />
         <activity android:name=".MainActivitycapnhat" />
@@ -34,5 +37,5 @@
         <activity android:name=".MainActivity2" />
         <activity android:name=".MainActivity" />
     </application>
-<uses-permission android:name="android.permission.CALL_PHONE"/>
+
 </manifest>

@@ -1,14 +1,14 @@
 package com.example.thanhlc;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -56,18 +56,22 @@ public class doimatkhau extends AppCompatActivity {
                     String passcheck = snapshot.child(tai).child("pass").getValue(String.class);
                     if (passcheck.equals(khau)) {
                        if(newpass.equals(password)) {
-                           // ten =snapshot.child(tai).child("ten").getValue(String.class);
-                           Mdata = FirebaseDatabase.getInstance().getReference().child("account");
-                           Helperclass helperclass = new Helperclass(tai, newpass, MainActivity.sdt, MainActivity.ten);
+                           if(newpass.length()>=8) {
+                               // ten =snapshot.child(tai).child("ten").getValue(String.class);
+                               Mdata = FirebaseDatabase.getInstance().getReference().child("account");
+                               Helperclass helperclass = new Helperclass(tai, newpass, MainActivity.sdt, MainActivity.ten);
 
 
-                           //Toast.makeText(MainActivitycapnhat.this,"Đăng ký thành công",Toast.LENGTH_SHORT).show();
-                           Mdata.child(tai).setValue(helperclass);
+                               //Toast.makeText(MainActivitycapnhat.this,"Đăng ký thành công",Toast.LENGTH_SHORT).show();
+                               Mdata.child(tai).setValue(helperclass);
 
 
-                           Toast.makeText(doimatkhau.this, "Đôi Mật Khẩu Thành Công", Toast.LENGTH_SHORT).show();
-                           Intent intent = new Intent(doimatkhau.this,MainActivity.class);
-                           startActivity(intent);
+                               Toast.makeText(doimatkhau.this, "Đôi Mật Khẩu Thành Công", Toast.LENGTH_SHORT).show();
+                               Intent intent = new Intent(doimatkhau.this, MainActivity.class);
+                               startActivity(intent);
+                           }else {
+                               Toast.makeText(doimatkhau.this, "Password phải trên 8 ki tự", Toast.LENGTH_SHORT).show();
+                           }
                        }
                        else {
                            Toast.makeText(doimatkhau.this, "Pass Hoặc pass mới không đúng", Toast.LENGTH_SHORT).show();

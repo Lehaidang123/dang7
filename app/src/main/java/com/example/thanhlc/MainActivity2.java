@@ -73,12 +73,16 @@ ImageView imageView;
                             }
                             else {
 
-                                if (user.getText().toString().length() != 0 && pass.getText().toString().length() != 0 && sdt.getText().toString().length() != 0 && ten.getText().toString().length() != 0) {
-                                    Helperclass helperclass = new Helperclass(name, p, st, hoten);
-                                    Toast.makeText(MainActivity2.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                                    reference.child(name).setValue(helperclass);
-                                    Intent intent = new Intent(MainActivity2.this, MainActivity8.class);
-                                    startActivity(intent);
+                                if (user.getText().toString().length() != 0  && pass.getText().toString().length() != 0 && sdt.getText().toString().length() != 0 && ten.getText().toString().length() != 0) {
+                                   if(user.getText().toString().length() >= 8 && pass.getText().toString().length() >=8) {
+                                       Helperclass helperclass = new Helperclass(name, p, st, hoten);
+                                       Toast.makeText(MainActivity2.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                                       reference.child(name).setValue(helperclass);
+                                       Intent intent = new Intent(MainActivity2.this, MainActivity8.class);
+                                       startActivity(intent);
+                                   }else {
+                                       Toast.makeText(MainActivity2.this, "Username và pass phải trên 8 kí tự", Toast.LENGTH_SHORT).show();
+                                   }
                                 }else {
                                     Toast.makeText(MainActivity2.this, "Vui lòng điền đầy đủ", Toast.LENGTH_SHORT).show();
                                 }
