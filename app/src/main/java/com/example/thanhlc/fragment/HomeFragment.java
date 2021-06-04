@@ -173,18 +173,7 @@ public class HomeFragment extends Fragment {
 
                     }
                 });
-             /*   khuvuc.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                     if(position == 2)
-                     {
-                         Intent intent = new Intent(getActivity(), Mainkhuvuc.class);
-                         intent.putExtra("khuvuc",khuvucs.get(position).getKhuvuc());
-                         startActivity(intent);
-                     }
 
-                    }
-                });*/
 
         String m[] = {"Sắp Xếp Theo Giá","Sắp Xếp Tăng Theo Giá","Sắp Xếp Giảm Theo Giá","Sắp xép theo chữ cái"};
         ArrayAdapter adapte=new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item,m);

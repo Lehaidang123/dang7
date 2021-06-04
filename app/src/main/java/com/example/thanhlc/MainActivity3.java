@@ -34,6 +34,7 @@ public class MainActivity3 extends AppCompatActivity {
     EditText ten;
     EditText gia;
     EditText noidung;
+    public static String y=MainActivity.username;
 
     FirebaseStorage storage = FirebaseStorage.getInstance();
     int requet= 1;
@@ -69,26 +70,42 @@ public class MainActivity3 extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment fragment;
-                switch (item.getItemId()){
-                    case R.id.hoe:
-                        loadFragment(homeFragment);
-                        return true;
-                    case R.id.danhmuc:
-                        fragment = new danhmucFragment();
-                        loadFragment(fragment);
-                        return true;
-                    case R.id.dangtin:
-                        fragment = new dangFragment();
-                        loadFragment(fragment);
-                        return true;
-                    case R.id.Thongtin:
-                        fragment = new thontinFragment();
-                        loadFragment(fragment);
-                        return true;
-                }
+
+
+
+
+                    Fragment fragment;
+
+
+                    switch (item.getItemId()) {
+                        case R.id.hoe:
+                            loadFragment(homeFragment);
+                            return true;
+                        case R.id.danhmuc:
+                            fragment = new danhmucFragment();
+                            loadFragment(fragment);
+                            return true;
+                        case R.id.dangtin:
+                            fragment = new dangFragment();
+                            loadFragment(fragment);
+                            return true;
+
+                        case R.id.Thongtin:
+
+                                fragment = new thontinFragment();
+                                loadFragment(fragment);
+
+                            return true;
+                    }
+
+
+
+
                 return false;
-            }
+
+                }
+
+
         });
 
 
@@ -101,5 +118,6 @@ public class MainActivity3 extends AppCompatActivity {
         activity.commit();
 
     }
+
 
 }

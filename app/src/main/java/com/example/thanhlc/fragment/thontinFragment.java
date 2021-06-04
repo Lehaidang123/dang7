@@ -2,34 +2,20 @@ package com.example.thanhlc.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.thanhlc.MainActivity;
-import com.example.thanhlc.MainActivity4;
-import com.example.thanhlc.MainActivity7;
 import com.example.thanhlc.MainActivitycapnhat;
 import com.example.thanhlc.MainActivityqlsp;
 import com.example.thanhlc.R;
 import com.example.thanhlc.doimatkhau;
 import com.example.thanhlc.userdata;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.HashMap;
-import java.util.zip.Inflater;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,6 +27,9 @@ public class thontinFragment extends Fragment {
     String userId;
     TextView user,qlsp,hoten;
     TextView txtsdt,doimk;
+    public  static String u;
+    public  static String y;
+
 userdata userdata;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -122,17 +111,41 @@ userdata userdata;
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext().getApplicationContext(), MainActivity.class);
+
+                    Intent intent = new Intent(getContext().getApplicationContext(), MainActivity.class);
                 startActivity(intent);
+
+
             }
         });
-
+fra();
         return view;
     }
 
     public void backMain() {
 
-        txtsdt.setText(MainActivity.sdt);
+        txtsdt.setText(MainActivity.sdt
+        );
         hoten.setText(MainActivity.ten);
+        u = MainActivity.username;
+    }
+    public void fra()
+    {
+        if(MainActivity.username.equals("admin123"))
+        {
+            admin t= new admin();
+            FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.conterner,t);
+            fragmentTransaction.commit();
+        }
+        else {
+            if (MainActivity.username.equals(""))
+            {
+                thontinFragment p = new thontinFragment();
+            FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.conterner, p);
+            fragmentTransaction.commit();
+        }
+        }
     }
 }
