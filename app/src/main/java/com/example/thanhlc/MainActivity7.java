@@ -1,7 +1,5 @@
 package com.example.thanhlc;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,9 +8,12 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class MainActivity7 extends AppCompatActivity {
     ImageView imageView;
     Animation animation;
+    SessionManager sessionManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

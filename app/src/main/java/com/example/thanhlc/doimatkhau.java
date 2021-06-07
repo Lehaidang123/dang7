@@ -19,6 +19,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class doimatkhau extends AppCompatActivity {
     DatabaseReference Mdata;
     TextView ten,pass, newpass, nhaplai;
@@ -54,30 +57,39 @@ public class doimatkhau extends AppCompatActivity {
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     String passcheck = snapshot.child(tai).child("pass").getValue(String.class);
-                    if (passcheck.equals(khau)) {
-                       if(newpass.equals(password)) {
-                           if(newpass.length()>=8) {
-                               // ten =snapshot.child(tai).child("ten").getValue(String.class);
-                               Mdata = FirebaseDatabase.getInstance().getReference().child("account");
-                               Helperclass helperclass = new Helperclass(tai, newpass, MainActivity.sdt, MainActivity.ten);
+                    try {
+                        if (passcheck.equals(md5(khau))) {
+                           if(newpass.equals(password)) {
+                               if(newpass.length()>=8) {
+                                   // ten =snapshot.child(tai).child("ten").getValue(String.class);
+                                   Mdata = FirebaseDatabase.getInstance().getReference().child("account");
+                                   Helperclass helperclass = null;
+                                   try {
+                                       helperclass = new Helperclass(tai, md5(newpass), MainActivity.sdt, MainActivity.ten);
+                                   } catch (NoSuchAlgorithmException e) {
+                                       e.printStackTrace();
+                                   }
 
 
-                               //Toast.makeText(MainActivitycapnhat.this,"Đăng ký thành công",Toast.LENGTH_SHORT).show();
-                               Mdata.child(tai).setValue(helperclass);
+                                   //Toast.makeText(MainActivitycapnhat.this,"Đăng ký thành công",Toast.LENGTH_SHORT).show();
+                                   Mdata.child(tai).setValue(helperclass);
 
 
-                               Toast.makeText(doimatkhau.this, "Đôi Mật Khẩu Thành Công", Toast.LENGTH_SHORT).show();
-                               Intent intent = new Intent(doimatkhau.this, MainActivity.class);
-                               startActivity(intent);
-                           }else {
-                               Toast.makeText(doimatkhau.this, "Password phải trên 8 ki tự", Toast.LENGTH_SHORT).show();
+                                   Toast.makeText(doimatkhau.this, "Đôi Mật Khẩu Thành Công", Toast.LENGTH_SHORT).show();
+                                   Intent intent = new Intent(doimatkhau.this, MainActivity.class);
+                                   startActivity(intent);
+                               }else {
+                                   Toast.makeText(doimatkhau.this, "Password phải trên 8 ki tự", Toast.LENGTH_SHORT).show();
+                               }
                            }
-                       }
-                       else {
-                           Toast.makeText(doimatkhau.this, "Pass Hoặc pass mới không đúng", Toast.LENGTH_SHORT).show();
-                       }
-                    } else {
-                        Toast.makeText(doimatkhau.this, "Pass Hoặc pass mới không đúng", Toast.LENGTH_SHORT).show();
+                           else {
+                               Toast.makeText(doimatkhau.this, "Pass Hoặc pass mới không đúng", Toast.LENGTH_SHORT).show();
+                           }
+                        } else {
+                            Toast.makeText(doimatkhau.this, "Pass Hoặc pass mới không đúng", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (NoSuchAlgorithmException e) {
+                        e.printStackTrace();
                     }
                 } else {
 
@@ -93,5 +105,27 @@ public class doimatkhau extends AppCompatActivity {
 
             }
         });
+    }
+    public static String md5(String text) throws NoSuchAlgorithmException {
+        MessageDigest digest = null;
+        try {
+            digest = MessageDigest.getInstance("md5");
+            byte[] result = digest.digest(text.getBytes());
+            StringBuffer sb = new StringBuffer();
+            for (byte b : result) {
+                int number = b & 0xff;
+                String hex = Integer.toHexString(number);
+                if (hex.length() == 1) {
+                    sb.append("0" + hex);
+
+                } else {
+                    sb.append(hex);
+                }
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.thanhlc.fragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,14 +16,17 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.thanhlc.Hinhanh;
+import com.example.thanhlc.MainActivity;
 import com.example.thanhlc.MainActivitychitiet;
 import com.example.thanhlc.MainActivitysapxep;
 import com.example.thanhlc.MainActivitysapxepgiamtheogia;

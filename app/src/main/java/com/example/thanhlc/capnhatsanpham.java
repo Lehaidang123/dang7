@@ -164,7 +164,7 @@ public class capnhatsanpham extends AppCompatActivity {
             }
         });
         String y[] ={"TP,HCM","Vĩnh Long","CÀ Mau","Bến tre","Tiền Giang","" +
-                "sóc Trăng","Bác Liêu","An Giang","Kiên Giang","Cần Thơ"};
+                "Sóc Trăng","Bác Liêu","An Giang","Kiên Giang","Cần Thơ"};
         ArrayAdapter adapt=new ArrayAdapter(capnhatsanpham.this, android.R.layout.simple_spinner_item,y);
         adapt.setDropDownViewResource(android.R.layout.simple_list_item_multiple_choice);
         khuvuc.setAdapter(adapt);

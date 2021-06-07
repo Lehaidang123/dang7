@@ -34,6 +34,7 @@ public class MainActivity3 extends AppCompatActivity {
     EditText ten;
     EditText gia;
     EditText noidung;
+    SessionManager sessionManager;
     public static String y=MainActivity.username;
 
     FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -47,7 +48,7 @@ public class MainActivity3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
         TextView textView = findViewById(R.id.txtSearch);
-
+//sessionManager = new SessionManager(getApplication());
         user =(TextView)findViewById(R.id.txtuser);
         txtsdt=(TextView)findViewById(R.id.txtsodienthoai);
 

@@ -1,5 +1,6 @@
 package com.example.thanhlc;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,9 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
@@ -116,6 +119,43 @@ GridView gridView;
         Intent intent = getIntent();
         tendm = intent.getStringExtra("tendm");
         testdanhmuc.setText("Danh mục"+" "+tendm);
+    }
+    private void admin()
+    {
+
+        if(MainActivity.username.equals("admin123"))
+        {
+            gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivityxeco.this);
+                    alertDialogBuilder.setMessage("Bán có muốn xóa sản phẩm này!");
+                    alertDialogBuilder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // xóa sp đang nhấn giữ
+                            Mdata = FirebaseDatabase.getInstance().getReference().child("sanpham").child(listHinhAnh.get(position).getId());
+                            Mdata.removeValue();
+                            Toast.makeText(MainActivityxeco.this, "Xóa Thành Công", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+                    alertDialogBuilder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //không làm gì
+                        }
+                    });
+                    alertDialogBuilder.show();
+
+                    return false;
+
+
+                }
+            });
+        }
     }
 
 }

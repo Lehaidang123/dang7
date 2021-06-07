@@ -18,6 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,11 +35,13 @@ public class MainActivity extends AppCompatActivity {
     public static String username;
     public static String passs;
     public static String sanpham;
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         tk = (EditText) findViewById(R.id.tk);
         mk = (EditText) findViewById(R.id.mk);
         dangky = (Button) findViewById(R.id.dangky);
@@ -75,17 +79,21 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     String passcheck = snapshot.child(tai).child("pass").getValue(String.class);
-                    if (passcheck.equals(khau)) {
-                       sdt = snapshot.child(tai).child("sdt").getValue(String.class);
-                       ten =snapshot.child(tai).child("ten").getValue(String.class);
-                       username=snapshot.child(tai).child("usernamae").getValue(String.class);
-                       passs =snapshot.child(tai).child("pass").getValue(String.class);
+                    try {
+                        if (!passcheck.equals(md5(khau))) {
+                            Toast.makeText(MainActivity.this, "Fail", Toast.LENGTH_SHORT).show();
+                        } else {
+                           sdt = snapshot.child(tai).child("sdt").getValue(String.class);
+                           ten =snapshot.child(tai).child("ten").getValue(String.class);
+                           username=snapshot.child(tai).child("usernamae").getValue(String.class);
+                           passs =snapshot.child(tai).child("pass").getValue(String.class);
+                       //  sessionManager.SetLogin(true);
+                            startActivity(new Intent(MainActivity.this, MainActivity7.class));
 
-                        startActivity(new Intent(MainActivity.this, MainActivity7.class));
-
-                        Toast.makeText(MainActivity.this, "Đăng Nhập Thành Công", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(MainActivity.this, "Fail", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Đăng Nhập Thành Công", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (NoSuchAlgorithmException e) {
+                        e.printStackTrace();
                     }
                 } else {
 
@@ -99,5 +107,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public static String md5(String text) throws NoSuchAlgorithmException {
+        MessageDigest digest = null;
+        try {
+            digest = MessageDigest.getInstance("md5");
+            byte[] result = digest.digest(text.getBytes());
+            StringBuffer sb = new StringBuffer();
+            for (byte b : result) {
+                int number = b & 0xff;
+                String hex = Integer.toHexString(number);
+                if (hex.length() == 1) {
+                    sb.append("0" + hex);
+
+                } else {
+                    sb.append(hex);
+                }
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 }

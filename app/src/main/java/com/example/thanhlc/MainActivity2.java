@@ -22,6 +22,9 @@ import com.google.firebase.storage.FirebaseStorage;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class MainActivity2 extends AppCompatActivity {
 ImageView imageView;
     FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -56,6 +59,8 @@ ImageView imageView;
                 String p = pass.getText().toString();
                 String st = sdt.getText().toString();
                 String hoten = ten.getText().toString();
+
+
                 Query userr = FirebaseDatabase.getInstance().getReference("account").orderByChild("sdt").equalTo(st);
                 userr.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -75,7 +80,12 @@ ImageView imageView;
 
                                 if (user.getText().toString().length() != 0  && pass.getText().toString().length() != 0 && sdt.getText().toString().length() != 0 && ten.getText().toString().length() != 0) {
                                    if(user.getText().toString().length() >= 8 && pass.getText().toString().length() >=8) {
-                                       Helperclass helperclass = new Helperclass(name, p, st, hoten);
+                                       Helperclass helperclass = null;
+                                       try {
+                                           helperclass = new Helperclass(name,md5(p), st, hoten);
+                                       } catch (NoSuchAlgorithmException e) {
+                                           e.printStackTrace();
+                                       }
                                        Toast.makeText(MainActivity2.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                                        reference.child(name).setValue(helperclass);
                                        Intent intent = new Intent(MainActivity2.this, MainActivity8.class);
@@ -104,5 +114,28 @@ ImageView imageView;
 
             }
         });
+    }
+    public static String md5(String text) throws NoSuchAlgorithmException {
+        MessageDigest digest = null;
+        try {
+            digest = MessageDigest.getInstance("md5");
+            byte[] result = digest.digest(text.getBytes());
+            StringBuffer sb = new StringBuffer();
+            for (byte b : result) {
+                int number = b & 0xff;
+                String hex = Integer.toHexString(number);
+                if (hex.length() == 1) {
+                    sb.append("0" + hex);
+
+                } else {
+                    sb.append(hex);
+                }
+            }
+            return sb.toString();
+        }catch (NoSuchAlgorithmException e)
+        {
+e.printStackTrace();
+return "";
+        }
     }
 }
