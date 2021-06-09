@@ -35,6 +35,15 @@ public class MainActivitychitiet extends AppCompatActivity {
         noidung=findViewById(R.id.chitietnoidung);
         khuvuc = findViewById(R.id.chitietkhuvuc);
         loadData();
+        sdt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent( MainActivitychitiet.this,thongtinsanphamaccount.class);
+
+                intent.putExtra("sdt",sdt.getText());
+                startActivity(intent);
+            }
+        });
         mail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
