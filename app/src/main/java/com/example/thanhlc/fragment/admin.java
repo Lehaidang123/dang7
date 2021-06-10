@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.thanhlc.MainActivity;
 import com.example.thanhlc.R;
+import com.example.thanhlc.adminaccount;
 import com.example.thanhlc.adminquanlysp;
 
 /**
@@ -19,7 +20,7 @@ import com.example.thanhlc.adminquanlysp;
  * create an instance of this fragment.
  */
 public class admin extends Fragment {
-TextView textView,textView1;
+TextView textView,textView1,TextView2;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -67,6 +68,14 @@ TextView textView,textView1;
         View view = inflater.inflate(R.layout.fragment_admin, container, false);
         textView = (TextView)view.findViewById(R.id.qlspadmin);
         textView1 =(TextView)view.findViewById(R.id.txtadmin);
+        TextView2 =(TextView)view.findViewById(R.id.adminaccount);
+        TextView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext().getApplicationContext(), adminaccount.class);
+                startActivity(intent);
+            }
+        });
         load();
        textView.setOnClickListener(new View.OnClickListener() {
            @Override

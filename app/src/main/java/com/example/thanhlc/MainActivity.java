@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     public static String username;
     public static String passs;
     public static String sanpham;
+    public static String loaitk;
     SessionManager sessionManager;
 
     @Override
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
                            ten =snapshot.child(tai).child("ten").getValue(String.class);
                            username=snapshot.child(tai).child("usernamae").getValue(String.class);
                            passs =snapshot.child(tai).child("pass").getValue(String.class);
+                           loaitk =snapshot.child(tai).child("loaitk").getValue(String.class);
                        //  sessionManager.SetLogin(true);
                             startActivity(new Intent(MainActivity.this, MainActivity7.class));
 

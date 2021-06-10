@@ -55,11 +55,14 @@ public class MainActivity4 extends AppCompatActivity {
     {
         String tai = user.getText().toString().trim();
         String khau = sdt.getText().toString().trim();
+        String loaitk = "Khách Hàng";
+        String loaitk1 = "admin";
         String password = pass.getText().toString().trim();
         Query user = FirebaseDatabase.getInstance().getReference("account").orderByChild("usernamae").equalTo(tai);
         user.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+
                 if (snapshot.exists()) {
                     String passcheck = snapshot.child(tai).child("sdt").getValue(String.class);
                     if (passcheck.equals(khau)) {
@@ -68,7 +71,14 @@ public class MainActivity4 extends AppCompatActivity {
                             Mdata = FirebaseDatabase.getInstance().getReference().child("account");
                             Helperclass helperclass = null;
                             try {
-                                helperclass = new Helperclass(tai, md5(password), khau, ten);
+                                if(tai.equals("admin123" )) {
+                                    helperclass = new Helperclass(tai, md5(password), khau, ten, loaitk1);
+                                }
+                                else {
+                                    if (tai.equals(tai)) {
+                                        helperclass = new Helperclass(tai, md5(password), khau, ten, loaitk);
+                                    }
+                                }
                             } catch (NoSuchAlgorithmException e) {
                                 e.printStackTrace();
                             }

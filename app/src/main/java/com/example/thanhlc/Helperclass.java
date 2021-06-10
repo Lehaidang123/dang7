@@ -3,17 +3,25 @@ package com.example.thanhlc;
 import java.util.ArrayList;
 
 public class Helperclass {
-    String usernamae, pass , sdt ,ten;
+    String usernamae, pass , sdt ,ten,loaitk;
 
     public  Helperclass(MainActivity4 mainActivity4, int simple_list_item_1, ArrayList<String> mang){}
 
-    public Helperclass(String usernamae, String pass, String sdt, String ten) {
+    public Helperclass(String usernamae, String pass, String sdt, String ten,String loaitk) {
         this.usernamae = usernamae;
         this.pass = pass;
         this.sdt = sdt;
         this.ten = ten;
+        this.loaitk=loaitk;
     }
 
+    public String getLoaitk() {
+        return loaitk;
+    }
+
+    public void setLoaitk(String loaitk) {
+        this.loaitk = loaitk;
+    }
 
     public String getUsernamae() {
         return usernamae;

@@ -131,7 +131,7 @@ fra();
     }
     public void fra()
     {
-        if(MainActivity.username.equals("admin123"))
+        if(MainActivity.loaitk.equals("admin"))
         {
             admin t= new admin();
             FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -139,7 +139,7 @@ fra();
             fragmentTransaction.commit();
         }
         else {
-            if (MainActivity.username.equals(""))
+            if (MainActivity.loaitk.equals(""))
             {
                 thontinFragment p = new thontinFragment();
             FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();

@@ -1,8 +1,5 @@
 package com.example.thanhlc;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,12 +7,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 public class MainActivitycapnhat extends AppCompatActivity {
 TextView ten,sdt;
@@ -45,9 +40,9 @@ Button capnhat;
 
         String tai = ten.getText().toString().trim();
         String khau = sdt.getText().toString().trim();
-
+        String loaitk="Khách Hàng";
         Mdata= FirebaseDatabase.getInstance().getReference().child("account");
-        Helperclass helperclass = new Helperclass(MainActivity.username, MainActivity.passs, khau, tai);
+        Helperclass helperclass = new Helperclass(MainActivity.username, MainActivity.passs, khau, tai,loaitk);
         Toast.makeText(MainActivitycapnhat.this, "Cập nhật thành công Vui lòng đăng nhập lại", Toast.LENGTH_SHORT).show();
 
 

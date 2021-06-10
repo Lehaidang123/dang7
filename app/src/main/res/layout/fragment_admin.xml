@@ -58,7 +58,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/txtQLTK"
+        android:id="@+id/adminaccount"
         android:layout_width="match_parent"
 
         android:layout_height="wrap_content"

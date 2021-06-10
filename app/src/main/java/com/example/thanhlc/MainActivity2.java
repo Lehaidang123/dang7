@@ -58,6 +58,7 @@ ImageView imageView;
                 String name = user.getText().toString();
                 String p = pass.getText().toString();
                 String st = sdt.getText().toString();
+                String loaitk="Khách Hàng";
                 String hoten = ten.getText().toString();
 
 
@@ -82,7 +83,7 @@ ImageView imageView;
                                    if(user.getText().toString().length() >= 8 && pass.getText().toString().length() >=8) {
                                        Helperclass helperclass = null;
                                        try {
-                                           helperclass = new Helperclass(name,md5(p), st, hoten);
+                                           helperclass = new Helperclass(name,md5(p), st, hoten,loaitk);
                                        } catch (NoSuchAlgorithmException e) {
                                            e.printStackTrace();
                                        }

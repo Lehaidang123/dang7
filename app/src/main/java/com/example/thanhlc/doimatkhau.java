@@ -51,6 +51,7 @@ public class doimatkhau extends AppCompatActivity {
         String khau = pass.getText().toString().trim();
         String password = newpass.getText().toString().trim();
         String newpass= nhaplai.getText().toString().trim();
+        String loaitk="Khách Hàng";
         Query user = FirebaseDatabase.getInstance().getReference("account").orderByChild("usernamae").equalTo(tai);
         user.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -65,7 +66,7 @@ public class doimatkhau extends AppCompatActivity {
                                    Mdata = FirebaseDatabase.getInstance().getReference().child("account");
                                    Helperclass helperclass = null;
                                    try {
-                                       helperclass = new Helperclass(tai, md5(newpass), MainActivity.sdt, MainActivity.ten);
+                                       helperclass = new Helperclass(tai, md5(newpass), MainActivity.sdt, MainActivity.ten,loaitk);
                                    } catch (NoSuchAlgorithmException e) {
                                        e.printStackTrace();
                                    }
