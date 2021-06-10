@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/relative_item_search">
+    android:id="@+id/relative_item_searc">
     <ImageView
         android:id="@+id/imvHSP"
         android:layout_marginLeft="10dp"
@@ -19,6 +19,17 @@
         android:textSize="20sp"
         android:layout_margin="15dp"
         android:id="@+id/accc"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imvHSP"
+        android:text="tên sản phẩm"
+        android:textColor="@color/black"
+        android:layout_below="@+id/accc"
+        android:textSize="20sp"
+        android:layout_margin="15dp"
+        android:id="@+id/acc"
         />
 
 </RelativeLayout>
