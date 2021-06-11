@@ -1,11 +1,13 @@
 package com.example.thanhlc.fragment;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -17,6 +19,10 @@ import com.example.thanhlc.MainActivityqlsp;
 import com.example.thanhlc.R;
 import com.example.thanhlc.doimatkhau;
 import com.example.thanhlc.userdata;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +34,8 @@ public class thontinFragment extends Fragment {
     String userId;
     TextView user,qlsp,hoten;
     TextView txtsdt,doimk;
+    ImageView profileImage;
+    StorageReference storageReference;
     public  static String u;
     public  static String y;
 
@@ -84,6 +92,19 @@ userdata userdata;
         qltk=(TextView)view.findViewById(R.id.txtQLTK);
         hotro = (TextView)view.findViewById(R.id.hotro);
         doimk=(TextView) view.findViewById(R.id.txtdoimk);
+        profileImage = (ImageView) view.findViewById(R.id.profileImage);
+        storageReference = FirebaseStorage.getInstance().getReferenceFromUrl("gs://thanh-l-c.appspot.com");
+
+//        userId = fAuth.getUid();
+        // userFB = fAuth.getCurrentUser();
+        StorageReference profileRef = storageReference.child("users/"+MainActivity.sdt);//Tạo một thư mục để mỗi người có thể tải ảnh của mình lên và không thể truy cập vào thư mục của người khác
+        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.with(getContext()).load(uri).into(profileImage);
+            }//hiển thị hình ảnh từ một nguồn bên ngoài
+        });
+
         hotro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
