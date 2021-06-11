@@ -2,6 +2,7 @@ package com.example.thanhlc.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,7 @@ import com.example.thanhlc.userdata;
  * create an instance of this fragment.
  */
 public class thontinFragment extends Fragment {
-    TextView btnBack,qltk;
+    TextView btnBack,qltk,hotro;
     String userId;
     TextView user,qlsp,hoten;
     TextView txtsdt,doimk;
@@ -81,7 +82,15 @@ userdata userdata;
         qlsp=(TextView) view.findViewById(R.id.txtQLsp);
         hoten=(TextView)view.findViewById(R.id.txthoten);
         qltk=(TextView)view.findViewById(R.id.txtQLTK);
+        hotro = (TextView)view.findViewById(R.id.hotro);
         doimk=(TextView) view.findViewById(R.id.txtdoimk);
+        hotro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hotro .setText("https://www.facebook.com/profile.php?id=100006421546739");
+                Linkify.addLinks(hotro , Linkify.WEB_URLS);
+            }
+        });
         doimk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

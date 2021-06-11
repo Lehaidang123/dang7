@@ -33,6 +33,7 @@ EditText editText;
         setContentView(R.layout.activity_adminaccount);
         recyclerView = findViewById(R.id.adminxoa);
         editText=findViewById(R.id.a);
+
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

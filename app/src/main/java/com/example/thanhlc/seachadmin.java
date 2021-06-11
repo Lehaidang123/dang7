@@ -1,6 +1,7 @@
 package com.example.thanhlc;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,9 +9,14 @@ import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -41,6 +47,33 @@ public class seachadmin extends RecyclerView.Adapter<seachadmin.ViewHolder> {
 
         holder.txtTSP.setText(filterList.get(position).getUsernamae());
         holder.t.setText(filterList.get(position).sdt);
+        holder.relativeLayout.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(mcontext);
+                alertDialogBuilder.setMessage("Bán có muốn xóa tài khoản này!");
+                alertDialogBuilder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // xóa sp đang nhấn giữ
+                        DatabaseReference Mdata;
+                        Mdata = FirebaseDatabase.getInstance().getReference().child("account").child(list.get(position).getUsernamae());
+                        Mdata.removeValue();
+                       Toast.makeText(mcontext, "Xóa Thành Công", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+                alertDialogBuilder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //không làm gì
+                    }
+                });
+                alertDialogBuilder.show();
+
+                return false;
+            }
+        });
 
     }
 
