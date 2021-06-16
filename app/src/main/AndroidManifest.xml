@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ThanhLýĐồCũ">
-        <activity android:name=".adminaccount"></activity>
+        <activity android:name=".doimkadmin"></activity>
+        <activity android:name=".adminaccount" />
         <activity android:name=".thongtinsanphamaccount" />
         <activity android:name=".adminquanlysp" />
         <activity android:name=".Mainkhuvuc" />

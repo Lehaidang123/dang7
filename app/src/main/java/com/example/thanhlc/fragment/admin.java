@@ -13,6 +13,7 @@ import com.example.thanhlc.MainActivity;
 import com.example.thanhlc.R;
 import com.example.thanhlc.adminaccount;
 import com.example.thanhlc.adminquanlysp;
+import com.example.thanhlc.doimkadmin;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,7 +21,7 @@ import com.example.thanhlc.adminquanlysp;
  * create an instance of this fragment.
  */
 public class admin extends Fragment {
-TextView textView,textView1,TextView2;
+TextView textView,textView1,TextView2,t;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -68,6 +69,14 @@ TextView textView,textView1,TextView2;
         View view = inflater.inflate(R.layout.fragment_admin, container, false);
         textView = (TextView)view.findViewById(R.id.qlspadmin);
         textView1 =(TextView)view.findViewById(R.id.txtadmin);
+        t=(TextView)view.findViewById(R.id.txtdoimkadmin);
+        t.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getContext(), doimkadmin.class);
+                startActivity(intent);
+            }
+        });
         TextView2 =(TextView)view.findViewById(R.id.adminaccount);
         TextView2.setOnClickListener(new View.OnClickListener() {
             @Override
